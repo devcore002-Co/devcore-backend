@@ -6,13 +6,11 @@ class Settings(BaseSettings):
     app_name: str = "DevCore API"
     app_env: str = "development"
 
-    # ── Per-domain database URLs ───────────────────────────────────────────────
-    # Each business gets its own PostgreSQL database on Railway.
-    # In dev, SQLite files are used automatically.
-    devos_database_url: str = "sqlite+aiosqlite:///./devos.db"
-    agency_database_url: str = "sqlite+aiosqlite:///./agency.db"
-    trading_database_url: str = "sqlite+aiosqlite:///./trading.db"
-    portal_database_url: str = "sqlite+aiosqlite:///./portal.db"
+    # ── Databases (2 PostgreSQL instances on Railway) ──────────────────────────
+    # DB 1 → DevOS + Portal  (expenses/debts/income + client accounts/notifications)
+    # DB 2 → Agency + Trading  (clients/projects/invoices + platforms/referrals)
+    database_url_1: str = "sqlite+aiosqlite:///./db1.db"
+    database_url_2: str = "sqlite+aiosqlite:///./db2.db"
 
     # ── Auth keys ──────────────────────────────────────────────────────────────
     agency_api_key: str = ""
